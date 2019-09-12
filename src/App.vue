@@ -48,7 +48,12 @@
             </td>
 
           </tr>
+          
+          <tr v-for="investimento of investimentos" :key="investimento.id">
 
+            <td>{{investimento.totalFixa}}</td>
+            <td>{{investimento.totalVariavel}}</td>
+          </tr>
         </tbody>
       
       </table>
@@ -71,7 +76,9 @@ export default{
         valor: '',
         data: ''
       },
-      investimentos: []
+      investimentos: [],
+      totalVariavel: 0,
+      totalFixa: 0 
     }
   },
 
@@ -83,7 +90,18 @@ export default{
     listar(){
       Investimento.listar().then(resposta => {
       this.investimentos = resposta.data
+      this.totalFixa = 0
+      this.totalVariavel = 0
+      // Itera por cada investimento retornado pela API, olhando pro tipo,
+      // e caso seja fixa ou variavel, soma o valor ao seu respectivo contador
+      this.investimentos.forEach((investimento) => {
+        if (investimento['tipo'] === 'Renda Variavel') {
+         this.totalVariavel += investimento['valor']
+        } else {
+          this.totalFixa += investimento['valor']
+        }
       })
+    })
     },
   
     salvar(){
