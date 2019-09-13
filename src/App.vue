@@ -111,7 +111,7 @@ export default{
       // Itera por cada investimento retornado pela API, olhando pro tipo,
       // e caso seja fixa ou variavel, soma o valor ao seu respectivo contador
       this.investimentos.forEach((investimento) => {
-        if (investimento['tipo'] === 'Renda Variavel' || investimento['tipo'] == 'Renda Variável') {
+        if (investimento['tipo'] == 'Renda Variavel' || investimento['tipo'] == 'Renda Variável') {
          this.totalVariavel += investimento['valor']
         } else {
           this.totalFixa += investimento['valor']
