@@ -12,7 +12,7 @@
       <form @submit.prevent="salvar">
 
           <label>Tipo</label>
-          <input type="text" placeholder="Tipo" v-model="investimento.tipo">
+          <input type="text" placeholder="Entre com: 'Renda Fixa' ou 'Renda Variável'" v-model="investimento.tipo">
           <label>Valor</label>
           <input type="number" placeholder="Valor" v-model="investimento.valor">
           <label>Data</label>
