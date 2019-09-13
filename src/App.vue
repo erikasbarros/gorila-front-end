@@ -11,8 +11,15 @@
       
       <form @submit.prevent="salvar">
 
-          <label>Tipo</label>
-          <input type="text" placeholder="Entre com: 'Renda Fixa' ou 'Renda Variável'" v-model="investimento.tipo">
+          <div class="input-field col s12">
+            <select name="text" v-model="investimento.tipo">
+              <option value="" disabled selected>Escolha o tipo de renda</option>
+              <option v-for="tipo in tipos" :key="tipo">{{tipo}}</option>
+          
+
+            </select>
+            <label>Tipo</label>
+          </div>
           <label>Valor</label>
           <input type="number" placeholder="Valor" v-model="investimento.valor">
           <label>Data</label>
