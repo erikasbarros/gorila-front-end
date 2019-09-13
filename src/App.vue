@@ -48,14 +48,30 @@
             </td>
 
           </tr>
-          
-          <tr v-for="investimento of investimentos" :key="investimento.id">
-
-            <td>{{investimento.totalFixa}}</td>
-            <td>{{investimento.totalVariavel}}</td>
-          </tr>
         </tbody>
       
+      </table>
+      
+      <table>
+        <thead>
+
+          <tr>
+            <th>TOTAL RENDA FIXA</th>
+            <th>TOTAL RENDA VARIÁVEL</th>
+            <th>% RENDA FIXA</th>
+            <th>% RENDA VARIÁVEL</th>
+          </tr>
+        </thead>
+        <p>
+        <tbody>
+            <tr>
+              <td>R$ {{totalFixa}}</td>
+              <td>R$ {{totalVariavel}}</td>
+              <td>{{percentualRF}}%</td>
+              <td>{{percentualRV}}%</td>
+            </tr>
+        
+        </tbody>
       </table>
 
     </div>
