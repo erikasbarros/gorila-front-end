@@ -10,7 +10,17 @@
     <div class="container">
       
       <form @submit.prevent="salvar">
-
+        
+        
+          
+<!-- <label for="investment-type">Tipo de Investimento:</label>
+            <select name="type" v-model="investimento.tipo">
+              
+              <option selected disabled value="">tipo</option>
+              <option value="fixed">fixo</option>
+              <option value="variable">variável</option>
+            </select> !-->
+          
           <div class="input-field col s12">
             <select name="text" v-model="investimento.tipo">
               <option value="" disabled selected>Escolha o tipo de renda</option>
@@ -20,6 +30,7 @@
             </select>
             <label>Tipo</label>
           </div>
+          
           <label>Valor</label>
           <input type="number" placeholder="Valor" v-model="investimento.valor">
           <label>Data</label>
@@ -55,10 +66,11 @@
             </td>
 
           </tr>
+
         </tbody>
       
       </table>
-      
+
       <table>
         <thead>
 
@@ -69,7 +81,7 @@
             <th>% RENDA VARIÁVEL</th>
           </tr>
         </thead>
-        <p>
+        
         <tbody>
             <tr>
               <td>R$ {{totalFixa}}</td>
@@ -79,14 +91,14 @@
             </tr>
         
         </tbody>
-      </table>
-
+      </table>      
     </div>
 
   </div>
 </template>
-
+  
 <script>
+        
 
 import Investimento from './services/invests'
 export default{
@@ -97,11 +109,16 @@ export default{
         id: '',
         tipo: '',
         valor: '',
-        data: ''
+        data: '',
       },
+      tipos: ['Renda Variável', 'Renda Fixa'],
       investimentos: [],
-      totalVariavel: 0,
-      totalFixa: 0 
+      totalVariavel: '',
+      totalFixa: '', 
+      total: '',
+      percentualRF: '',
+      percentualRV: ''
+       
     }
   },
 
@@ -115,13 +132,20 @@ export default{
       this.investimentos = resposta.data
       this.totalFixa = 0
       this.totalVariavel = 0
+      this.total = 0
+      this.percentualRF = 0
+      this.percentualRV = 0
       // Itera por cada investimento retornado pela API, olhando pro tipo,
       // e caso seja fixa ou variavel, soma o valor ao seu respectivo contador
       this.investimentos.forEach((investimento) => {
         if (investimento['tipo'] == 'Renda Variavel' || investimento['tipo'] == 'Renda Variável') {
          this.totalVariavel += investimento['valor']
-        } else {
+        } 
+        else {
+          if (investimento['tipo'] == 'Renda Fixa') {
           this.totalFixa += investimento['valor']
+          }
+
         }
       })
       this.total = this.totalFixa + this.totalVariavel
@@ -155,10 +179,11 @@ export default{
       Investimento.deletar(investimento).then(resposta =>{
         this.listar();
 
-      })
+    })
       
-    }
+    }    
   }
+
 }
 </script>
 
