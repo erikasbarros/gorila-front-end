@@ -3,7 +3,7 @@
 
     <nav>
       <div class="nav-wrapper blue darken-1">
-        <a href="#" class="brand-logo center">Investimento - Front</a>
+        <a href="#" class="brand-logo center">Carteira de Investimentos</a>
       </div>
     </nav>
 
