@@ -117,6 +117,9 @@ export default{
           this.totalFixa += investimento['valor']
         }
       })
+      this.total = this.totalFixa + this.totalVariavel
+      this.percentualRF = Math.round((this.totalFixa/this.total)*100)
+      this.percentualRV = Math.round((this.totalVariavel/this.total)*100)
     })
     },
   
